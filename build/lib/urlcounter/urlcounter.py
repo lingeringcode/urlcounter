@@ -127,18 +127,19 @@ def url_counter(df, columns):
     sorted_totals = sorted(col_totals, key=lambda x: x[1], reverse=True) #descending
     return [sorted_totals, sorted_domain_totals]
 
-    
 '''
 top_urls: Tallies up URLs in corpus.
     
     Arguments:
         -df= DataFrame. Corpus to query from.
-        -columns= a List of 4 column names (String) to reference in DF corpus:
-            0. Column with URLs that includes a list of URLs included in post/content: 
+        -columns= A List of 5 column names (String) to reference in DF corpus:
+            0. Column with URLs (String) that includes a list of URLs included in post/content: 
                 - Example: ['https://time.com','https://and-time-again.com']. The List can also be a String, '[]' since the function converts literals.
             1. Column with number of times a post was shared (Integer), such as Retweets on Twitter.
-            2. Column with usernames, such as tweet usernames
-            3. Column with content data, such as tweets with targeted users from module.
+            2. Column with group data (String), such as hashtags from tweets.
+            3. Column with usernames (String), such as tweet usernames
+            4. Column with target content data (String), such as tweets with targeted users from module, 
+                or stringified list of targeted people like tweet mentions.
         -url_sample_size= Integer. Desired sample limit.
         -periods= Tuple. Contains 2 Integers, which define the range of periods, e.g., (1,10)
         -hubs= Tuple. Contains 2 Integers, which define the range of module/hubs, e.g., (1,10)
@@ -155,8 +156,10 @@ def top_urls(**kwargs):
     verboseprint = print if kwargs['verbose']==True else lambda *a, **k: None
     output = {}
     url_sample_size = kwargs['url_sample_size']
-    username_col = kwargs['columns'][2]
-    content_col = kwargs['columns'][3]
+    group_col = kwargs['columns'][2]
+    username_col = kwargs['columns'][3]
+    content_col = kwargs['columns'][4]
+    
     #1. LOOP THROUGH EACH GROUP
     for htg in kwargs['list_of_regex']:
         
@@ -169,10 +172,10 @@ def top_urls(**kwargs):
                 period_df = kwargs['df'][kwargs['df']['date'].isin(kwargs['period_dates'][str(p)])]
                 
                 #2b GROUP TOTALS FOR PERIOD 
-                #2c Search periodic content with regex string (htg[1])
-                df_content = period_df[period_df[content_col].str.contains(htg[1], na=False)]
-                c_url_counts_perperiod = url_counter(df_content, kwargs['columns'])
-                verboseprint('\nPeriod',p,': ', htg ,':\n', c_url_counts_perperiod[0][:3])
+                #2c Search periodic content with group regex string (htg[1])
+                df_group = period_df[period_df[group_col].str.contains(htg[1], na=False)]
+                c_url_counts_perperiod = url_counter(df_group, kwargs['columns'])
+                verboseprint('\nPeriod',p,': ', htg ,':', len(c_url_counts_perperiod[0]))
 
                 #2d Append per period to dict
                 urlp = htg[0]+'_urls_per_period'
@@ -216,10 +219,10 @@ def top_urls(**kwargs):
                 period_df = kwargs['df'][kwargs['df']['date'].isin(kwargs['period_dates'][str(p)])]
 
                 #2b GROUP TOTALS FOR PERIOD 
-                #2c Search periodic content with regex string (htg[1])
-                df_content = period_df[period_df[content_col].str.contains(htg[1], na=False)]
-                c_url_counts_perperiod = url_counter(df_content, kwargs['columns'])
-                verboseprint('\nPeriod',p,': ', htg ,':\n', c_url_counts_perperiod[0][:3])
+                #2c Search periodic content with group regex string (htg[1])
+                df_group = period_df[period_df[group_col].str.contains(htg[1], na=False)]
+                c_url_counts_perperiod = url_counter(df_group, kwargs['columns'])
+                verboseprint('\nPeriod',p,': ', htg ,':', len(c_url_counts_perperiod[0]))
 
                 #2d Append per period to dict
                 urlp = htg[0]+'_urls_per_period'
