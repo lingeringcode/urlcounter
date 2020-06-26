@@ -1,0 +1,5 @@
+site_name: URLCounter
+nav:
+    - Home: index.md
+    - Example Use-Case: example.md
+theme: readthedocs
