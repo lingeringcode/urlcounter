@@ -28,7 +28,7 @@ dict_url_counts = urlc.top_urls(
 )
 ```
 
-### Example outputs
+## Example outputs
 
 It returns a ```Dict``` keyed by user-defined group names, period ranges, and module ranges:
 
@@ -82,7 +82,7 @@ output['1']['fbt']['1']['hub_domain_counts']
 ...
 ```
 
-### top_urls()
+## top_urls()
 
 Tallies up URLs in corpus.
     
@@ -110,7 +110,7 @@ Returns:
 
 - Dict. See documentation for output details for data access.
 
-### url_counter()
+## url_counter()
 
 Helper function for ```top_urls()```. It transforms an incoming list of Strings into a regex string to facilitate a search.
     
@@ -131,7 +131,7 @@ Returns:
       - String domain URL
       - Integer. Total number of URL instances (including RTs).
 
-### regex_lister()
+## regex_lister()
 
 Helper function for ```top_urls()```, but also can be used to create the group regex search parameters on its own. It transforms an incoming list of Strings into a regex string to facilitate a search.
     
