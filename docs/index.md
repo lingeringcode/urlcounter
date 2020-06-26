@@ -90,12 +90,12 @@ Arguments:
 
 - ```df```= DataFrame. Corpus to query from.
 - ```columns```= a List of 5 column names (String) to reference in DF corpus. **!IMP**: *The order matters*:
-  1. Column with URLs (String) that includes a list of URLs included in post/content: 
-    - Example: ['https://time.com','https://and-time-again.com']. The List can also be a String, '[]' since the function converts literals.
-  2. Column with number of times a post was shared (Integer), such as Retweets on Twitter.
-  3. Column with group data (String), such as hashtags from tweets.
-  4. Column with usernames (String), such as tweet usernames
-  5. Column with target content data (String), such as tweets with targeted users from module, or stringified list of targeted people like tweet mentions.
+    1. Column with URLs (String) that includes a list of URLs included in post/content: 
+        - Example: ['https://time.com','https://and-time-again.com']. The List can also be a String, '[]' since the function converts literals.
+    2. Column with number of times a post was shared (Integer), such as Retweets on Twitter.
+    3. Column with group data (String), such as hashtags from tweets.
+    4. Column with usernames (String), such as tweet usernames
+    5. Column with target content data (String), such as tweets with targeted users from module, or stringified list of targeted people like tweet mentions.
 - ```url_sample_size```= Integer. Desired sample limit.
 - ```periods```= Tuple. Contains 2 Integers, which define the range of periods, e.g., (1,10)
 - ```hubs```= Tuple. Contains 2 Integers, which define the range of module/hubs, e.g., (1,10)
