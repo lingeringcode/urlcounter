@@ -7,8 +7,8 @@ Distributed under the BSD 3-clause license. See LICENSE.txt or http://opensource
 
 ```urlcounter``` is a set of functions that tallies full and domain URLs for periodic, event-defined social-media posting data. It assumes you seek an answer to the following questions about link-sharing:
 
-    1. What are the top x full URLs and domain URLs from each group during each period?
-    2. What are the top x full URLs and domain URLs from each group-module (detected community) in each period?
+1. What are the top x full URLs and domain URLs from each group during each period?
+2. What are the top x full URLs and domain URLs from each group-module (detected community) in each period?
 
 To use the module, import and follow the below example for guidance:
 
