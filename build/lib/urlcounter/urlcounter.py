@@ -60,8 +60,8 @@ def regex_lister(the_list, key):
     Arguments:
         -df: DataFrame. Array of Strings to write as a regex String.
         -columns: a List of 4 column names to use from corpus:
-            1. Name of URL column that includes a list of URLs included in post/content.
-            2. Integer. Number of times a post was shared, such as Retweets on Twitter.
+            0. Name of URL column that includes a list of URLs included in post/content.
+            1. Integer. Number of times a post was shared, such as Retweets on Twitter.
     Returns:
         -A List that includes:
             - sorted_totals: List of Tuples that contain 2 items:
@@ -83,10 +83,19 @@ def url_counter(df, columns):
                 # Go through list of urls
                 for url in lu:
                     if url != None:
-                        # Based on shared count, append that amount
-                        ranger = int(h[columns[1]])
-                        for g in range(0, ranger):
-                            cleaned_listed_data.append(url)
+                        # Check for malformed URLs
+                        # TODO: Could use some more checks here
+                        if (url[0] == '/'):
+                            print('=============')
+                            print('Cleaning needed for', h[columns[3]]+'\'s', h[columns[0]])
+                            print('Problem URL:', url)
+                            print('=============')
+                            continue
+                        else:
+                            # Based on shared count, append that amount
+                            ranger = int(h[columns[1]])
+                            for g in range(0, ranger):
+                                cleaned_listed_data.append(url)
     
     # Count up domains
     domain_re = r"://[^.]{1,}\.[^\/]{1,}\/"
@@ -98,6 +107,7 @@ def url_counter(df, columns):
         if len(domain_match) == 0:
             s_match = [(s.start(0), s.end(0)) for s in re.finditer(simple_re, domain)]
             broken_check = [(s.start(0), s.end(0)) for s in re.finditer(broken_urls, domain)]
+            
             if len(broken_check) > 0:
                 continue
             else:

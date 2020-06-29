@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 setup(
   name = 'urlcounter',
   packages = ['urlcounter'],
-  version = '0.0.2',
+  version = '0.0.3',
   description = 'A set of functions that tally URLs within an event-based corpus. It assumes that you have data divided into a range of event-based periods with community-detected modules/hubs. It also assumes that you have unspooled and cleaned your URL data. See Deen Freelon\'s unspooler module for help: https://github.com/dfreelon/unspooler.',
   author = 'Chris A. Lindgren',
   author_email = 'chris.a.lindgren@gmail.com',
