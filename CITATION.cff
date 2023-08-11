@@ -1,0 +1,9 @@
+cff-version: 0.0.3
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Lindgren
+    given-names: Chris
+    orcid: https://orcid.org/0000-0002-4954-7598
+title: lingeringcode/urlcounter: initial release
+version: v0.0.3
+date-released: 2023-07-12
